@@ -7,6 +7,13 @@
 </head>
 <body>
     <h1>Lista de Eventos</h1>
-      
+     
+     <div th:each="ev:${listaEventos}" >
+		 <p> <span th:text="${ev.nome}"></span> </p>
+		 <p> <span th:text="${ev.data}"></span> </p>
+		 <p> <span th:text="${ev.endereco}"></span> </p>
+		 <p> <span th:text="${ev.horario}"></span> </p>
+	 </div>
+     
 </body>
 </html>
