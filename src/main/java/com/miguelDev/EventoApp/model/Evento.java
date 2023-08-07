@@ -1,4 +1,5 @@
 package com.miguelDev.EventoApp.model;
+import java.io.Serializable;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -9,21 +10,24 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="tb_evento")
-public class Evento {
+public class Evento implements Serializable{
+	
+	private static final long serialVersionUID = 1L;
+   
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    private Long codigo;
    private String nome;
-   private String endereco;
+   private String local;
    private String data;
    private String horario;
    
     public Evento() {}
     
-    public Evento(Long codigo,String nome,String endereco,String data,String horario) {
+    public Evento(Long codigo,String nome,String local,String data,String horario) {
     	this.codigo = codigo;
     	this.nome = nome;
-    	this.endereco = endereco;
+    	this.local = local;
     	this.data = data;
     	this.horario = horario;
     	
@@ -41,11 +45,11 @@ public class Evento {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getEndereco() {
-		return endereco;
+	public String getLocal() {
+		return local;
 	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setLocal(String local) {
+		this.local = local;
 	}
 	public String getData() {
 		return data;
