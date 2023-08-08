@@ -1,5 +1,6 @@
 package com.miguelDev.EventoApp.model;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -21,6 +22,7 @@ public class Evento implements Serializable{
    private String local;
    private String data;
    private String horario;
+   private List<Convidado> convidados;
    
     public Evento() {}
     

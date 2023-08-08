@@ -13,42 +13,67 @@
 <body>
 	<header class="headMain" id="">
     	<nav class="" id="">
-			<div class="nav-wrapper indigo darken-4">
-			    <div class="nav-wrapper">
-			      <a href="#" class="brand-logo">Lista de Eventos</a>
-				      <ul id="nav-mobile" class="right">
-				        <li><a class="waves-effect waves-light btn" href="cadastro">
-							<i class="material-icons left">add_circle_outline</i>
-							Cadastrar Evento</a></li>
-				      </ul>
-			    </div>				
+			<div class="nav-wrapper indigo darken-4">			    
+		      <a href="#" class="brand-logo">Eventos</a>
+		      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+			      <ul class="right hide-on-med-and-down">
+			        <li><a class="waves-effect waves-light btn" href="cadastro">
+						<i class="material-icons left">add_circle_outline</i>
+						Cadastrar Evento</a></li>
+			      </ul>
 			</div>
   		</nav>
+  		<ul class="sidenav" id="mobile-demo">
+	    	<li><a href="cadastro">Cadastro</a></li>
+	    </ul>
 	</header>
      <div class="container">
 		 <table class="container">
 			 <thead>
-				 <th>Nome</th>
-				 <th>Data</th>
-				 <th>Local</th>
-				 <th>Horário</th>
-				 <th>Excluir</th>
+				 <tr>
+					 <th>Nome</th>
+					 <th>Data</th>
+					 <th>Local</th>
+					 <th>Horário</th>
+					 <th>Excluir</th>		 
+				 </tr>
 			 </thead>
 			 <tbody>
 				 <tr th:each="ev:${listaEventos}">
-					 <td><span th:text="${ev.Nome}"></span></td>
-					 <td><span th:text="${ev.data}"></span></td>
-					 <td><span th:text="${ev.local}"></span></td>
-					 <td><span th:text="${ev.horario}"></span></td>
-			        <td>
-						<a th:href="${(#mvc.url('EC#deletar').arg(0, ev.codigo)).build()}"><i class="material-icons left">delete</i></a>
-					</td> 						 	 
+					 <div class="row">
+						 <td>
+							 <a href="/detalheEvento">
+							 	<span th:text="${ev.Nome}"></span></td>							 
+							 </a>
+						 <td><span th:text="${ev.data}"></span></td>
+						 <td><span th:text="${ev.local}"></span></td>
+						 <td><span th:text="${ev.horario}"></span></td>
+				        <td>
+						   <a th:href="${(#mvc.url('EC#deletar').arg(0, ev.codigo)).build()}"><i class="material-icons left">delete</i></a>
+						</td> 						 	 	 
+					 </div>
 				 </tr>
 			 </tbody>	 
 		 </table>
 	 </div>
      
+      <!-- Jquery -->
+      <script tyoe="text/javascript" src="/jquery/code.jquery.com_jquery-3.7.0.min.js"></script> 
+     
      <!--JavaScript at end of body for optimized loading-->
-      <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+      <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+      <!-- Inicializador do jquery do materializer-->
+      <script>
+		   document.addEventListener('DOMContentLoaded', function() {
+		    var elems = document.querySelectorAll('.sidenav');
+		    var instances = M.Sidenav.init(elems, options);
+		    });
+		
+		  // Or with jQuery
+		
+		  $(document).ready(function(){
+		    $('.sidenav').sidenav();
+		  });
+	  </script>
 </body>
 </html>
