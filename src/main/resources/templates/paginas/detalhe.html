@@ -38,7 +38,7 @@
 	  </div><!--container lista evento-->
 	  <div class="container cadEvento">
 		  <div class="row">
-			  <form action="" class="col s12">
+			  <form method="post" class="col s12">
 			  	  	<div class="row">
 						<div class="input-field col s6">
 			           		<label for="nome">Nome</label>
@@ -53,11 +53,33 @@
 			           		<input type="text" name="genero" placeholder="Gênero" class="validate" required />						
 						</div>	
 					</div>
-					<button class="btn">Adicionar</button>
+					<button type="submit" class="btn">Adicionar</button>
 		      </form>
 		  </div>
 	  </div><!-- container form -->  
-     
+       
+       <div class="container">
+		   <table>
+			   <thead>
+				   <tr>
+					   <th>Convidado</th>
+					   <th>Idade</th>
+					   <th>Gênero</th>
+					   <th>Excluir</th>
+				   </tr>
+			   </thead>
+			   <tbody>
+				   <tr th:each="c:${detalheConvidados}">
+					   <td><span th:text="${c.nome}"></span></td>
+					   <td><span th:text="${c.idade}"></span></td>
+					   <td><span th:text="${c.genero}"></span></td>
+					   <td><a><i  
+					   class="material-icons left">delete</i></a></td>
+				   </tr>
+			   </tbody>
+		   </table>
+	   </div>
+       
      
      
      <!-- Jquery -->

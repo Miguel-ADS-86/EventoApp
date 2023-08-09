@@ -56,7 +56,7 @@ public class EventoController {
 	 public ModelAndView exibirdetalhe(@PathVariable Long codigo) {
 		 ModelAndView model = new ModelAndView("paginas/detalhe");
 		 Evento evento = eventoRepository.findById(codigo).get();
-		 List<Convidado> convidados = convidadoRepository.findAll();
+		 List<Convidado> convidados = convidadoRepository.findByEvento(evento);
 		 
 		 model.addObject("detalheEvento", evento);
 		 model.addObject("detalheConvidados",convidados);
@@ -65,10 +65,11 @@ public class EventoController {
 	 }
 	 
 	 // cadastrar um convidado no evento
-	 @PostMapping(value="codigo")
+	 @PostMapping(value="{codigo}")
 	 public String cadastrarConvidado(@PathVariable Long codigo, Convidado convidado) {
 		 Evento evento = eventoRepository.findById(codigo).get();
 		 convidado.setEvento(evento);
+		 convidadoRepository.save(convidado);
 		 return "redirect:{codigo}";
 	 }
 	
