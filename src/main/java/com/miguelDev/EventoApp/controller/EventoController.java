@@ -9,13 +9,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.miguelDev.EventoApp.model.Convidado;
 import com.miguelDev.EventoApp.model.Evento;
+import com.miguelDev.EventoApp.repository.ConvidadoRepository;
 import com.miguelDev.EventoApp.repository.EventoRepository;
 
 @Controller
 public class EventoController {
     @Autowired
 	private EventoRepository eventoRepository;
+    
+    @Autowired
+    private ConvidadoRepository convidadoRepository;
 	
     //Exibe a tela de cadastroEvento
 	@GetMapping(value="/cadastro")
@@ -46,10 +51,25 @@ public class EventoController {
 		return "redirect:/cadastros";
 	}
 	
-	// exibir detalhe evento
-	 @GetMapping(value = "/detalheEvento/{codigo}")
-	 public String exibirdetalhe(@PathVariable Long codigo) {
-		 return "paginas/detalhe.html";
+	// exibir detalhe evento com os seus respectivos convidados
+	 @GetMapping(value = "{codigo}")
+	 public ModelAndView exibirdetalhe(@PathVariable Long codigo) {
+		 ModelAndView model = new ModelAndView("paginas/detalhe");
+		 Evento evento = eventoRepository.findById(codigo).get();
+		 List<Convidado> convidados = convidadoRepository.findAll();
+		 
+		 model.addObject("detalheEvento", evento);
+		 model.addObject("detalheConvidados",convidados);
+		 
+		 return model;
+	 }
+	 
+	 // cadastrar um convidado no evento
+	 @PostMapping(value="codigo")
+	 public String cadastrarConvidado(@PathVariable Long codigo, Convidado convidado) {
+		 Evento evento = eventoRepository.findById(codigo).get();
+		 convidado.setEvento(evento);
+		 return "redirect:{codigo}";
 	 }
 	
 }

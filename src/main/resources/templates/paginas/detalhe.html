@@ -27,8 +27,38 @@
 	    <li><a href="cadastros">Cadastros</a></li>
 	  </ul>
 	</header>
-	
-      tabela
+	 
+      <div class="container cadEvento" th:each ="ev:${detalheEvento}" >
+		  <div class="row">
+			  <p>Nome:    <span th:text="${ev.nome}"></span></p>
+			  <p>Local:   <span th:text="${ev.local}"></span></p>
+			  <p>Data:    <span th:text="${ev.data}"></span></p>
+			  <p>Horário: <span th:text="${ev.horario}"></span></p>
+		  </div><!--row-->
+	  </div><!--container lista evento-->
+	  <div class="container cadEvento">
+		  <div class="row">
+			  <form action="" class="col s12">
+			  	  	<div class="row">
+						<div class="input-field col s6">
+			           		<label for="nome">Nome</label>
+			           		<input type="text" name="nome" placeholder="Nome" class="validate" required />						
+						</div>
+						<div class="input-field col s3">
+			           		<label for="nome">Idade</label>
+			           		<input type="text" name="idade" placeholder="idade" class="validate" required />						
+						</div>
+						<div class="input-field col s3">
+			           		<label for="nome">Gênero</label>
+			           		<input type="text" name="genero" placeholder="Gênero" class="validate" required />						
+						</div>	
+					</div>
+					<button class="btn">Adicionar</button>
+		      </form>
+		  </div>
+	  </div><!-- container form -->  
+     
+     
      
      <!-- Jquery -->
       <script tyoe="text/javascript" src="/jquery/code.jquery.com_jquery-3.7.0.min.js"></script> 

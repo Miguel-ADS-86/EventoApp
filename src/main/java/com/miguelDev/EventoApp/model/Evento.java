@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +23,8 @@ public class Evento implements Serializable{
    private String local;
    private String data;
    private String horario;
+   
+   @OneToMany
    private List<Convidado> convidados;
    
     public Evento() {}
@@ -64,6 +67,15 @@ public class Evento implements Serializable{
 	}
 	public void setHorario(String horario) {
 		this.horario = horario;
+	}
+   
+	
+	public List<Convidado> getConvidados() {
+		return convidados;
+	}
+
+	public void setConvidados(List<Convidado> convidados) {
+		this.convidados = convidados;
 	}
 
 	@Override
