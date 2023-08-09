@@ -48,3 +48,10 @@
 		
 ```
 
+## Modelo de Domínio
+
+![](C:\Users\Miguel\Documents\Projetos\EventoApp\img\modeloDominio.png)
+
+## Modelo de Objeto
+
+![](C:\Users\Miguel\Documents\Projetos\EventoApp\img\modeloObjeto.png)
