@@ -83,6 +83,7 @@ public class EventoController {
 		 Evento ev = c.getEvento();
 		 String valor = ""+ev.getCodigo();
 		 return "redirect:" + valor;
+		 //testando está linha
 	 }
 	
 }
