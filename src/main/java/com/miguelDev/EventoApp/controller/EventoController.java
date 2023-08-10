@@ -52,6 +52,7 @@ public class EventoController {
 	}
 	
 	// exibir detalhe evento com os seus respectivos convidados
+	
 	 @GetMapping(value = "{codigo}")
 	 public ModelAndView exibirdetalhe(@PathVariable Long codigo) {
 		 ModelAndView model = new ModelAndView("paginas/detalhe");
@@ -71,6 +72,17 @@ public class EventoController {
 		 convidado.setEvento(evento);
 		 convidadoRepository.save(convidado);
 		 return "redirect:{codigo}";
+	 }
+	 
+	 //deletando convidado, e retornando o codigo do evento que ele pertenceu.
+	 
+	 @GetMapping(value="deleteConvidado")
+	 public String deleteConvidado(Long codigo) {
+		 Convidado c = convidadoRepository.findById(codigo).get();
+		 convidadoRepository.delete(c);
+		 Evento ev = c.getEvento();
+		 String valor = ""+ev.getCodigo();
+		 return "redirect:" + valor;
 	 }
 	
 }

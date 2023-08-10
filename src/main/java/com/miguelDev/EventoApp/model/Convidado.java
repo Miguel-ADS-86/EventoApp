@@ -31,7 +31,6 @@ public class Convidado implements Serializable{
     public Convidado() {}
 
 	public Convidado(Long codigo, String nome, Integer idade, String genero, Evento evento) {
-		super();
 		this.codigo = codigo;
 		this.nome = nome;
 		this.idade = idade;
